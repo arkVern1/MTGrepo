@@ -1,0 +1,3 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  //Load 
+SET PICTURE FILE NAME(btn_card1;String(black_lotus.jpg))

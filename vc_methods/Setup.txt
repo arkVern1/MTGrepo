@@ -1,0 +1,5 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+$WindowsID:=Open form window("MTG1")
+DIALOG("MTG1")
+CLOSE WINDOW($WindowsId)
+

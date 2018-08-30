@@ -1,0 +1,14 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+Begin SQL
+	--UPDATE CardsInDeck SET CardSubtypeID = 5 WHERE CardName = 'Wall of Swords'; 
+	--UPDATE CardsInDeck SET CardFile = 'wall_of_swords.jpg' WHERE CardName = 'Wall of Swords';
+	
+	--INSERT INTO CardsInDeck (CardName, CardColorID, CardTypeID, CardSubtypeID, CardManaCost, ConvertedManaCost, CardFile, Legendary)                         
+	--VALUES ('Plains', 1, 10, 5, '0', 0, 'plains.jpg', 0);
+	
+	INSERT INTO CardsInDeck (CardName, CardColorID, CardTypeID, CardSubtypeID, CardManaCost, ConvertedManaCost, CardFile, Legendary)                         
+	VALUES ('Wall of Swords', 1, 3, 5, '3W', 4, 'wall_of_swords.jpg', 0);
+	
+	--INSERT INTO CardsInDeck (CardName, CardColorID, CardTypeID, CardSubtypeID, CardManaCost, ConvertedManaCost, CardFile, Legendary)                         
+	--VALUES ('Black Lotus', 6, 1, 5, '0', 0, 'black_lotus.jpg', 0);
+End SQL

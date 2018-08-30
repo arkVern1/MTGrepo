@@ -1,0 +1,33 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+ARRAY TEXT(cardName;0)
+ARRAY TEXT(cardColor;0)
+ARRAY TEXT(cardType;0)
+ARRAY TEXT(cardSubtype;0)
+ARRAY TEXT(cardCost;0)
+ARRAY INTEGER(convertedCost;0)
+ARRAY BOOLEAN(legendary;0)
+ARRAY TEXT(cardFile;0)
+  //ARRAY TEXT(multiColors;0)
+Begin SQL
+	SELECT cid.CardName, cc.Color, ct.CardType, cst.CardSubtype, 
+	cid.CardManaCost, cid.ConvertedManaCost, cid.CardFile,
+	cid.Legendary 
+	FROM CardsInDeck cid
+	INNER JOIN CardColors cc ON cid.CardColorID = cc.ID
+	INNER JOIN CardTypes ct ON cid.CardTypeID = ct.ID
+	INNER JOIN CardSubtypes cst ON cid.CardSubtypeID = cst.ID
+	--INNER JOIN Multicolors mc ON cid.MulticolorID = mc.ID
+	ORDER BY cid.CardName ASC
+	INTO :cardName, :cardColor, :cardType, :cardSubtype,
+	:cardCost, :convertedCost, :cardFile, :legendary;
+End SQL
+
+QUERY([CardsInDeck];[CardsInDeck]CardName="Black@";*)
+QUERY([CardsInDeck]; | ;[CardsInDeck]CardName="Wall@";*)
+QUERY([CardsInDeck]; | ;[CardsInDeck]CardName="Plains@")
+
+$alertString:="Contents of deck:\n"
+For ($count;1;Size of array(cardName))
+	$alertString:=$alertString+cardName{$count}+"\n"
+End for 
+ALERT($alertString)

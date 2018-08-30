@@ -1,0 +1,10 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+C_TEXT(thePath)
+C_TEXT(theCode)
+thePath:=METHOD Get path(Path project method;"EliminateExcessCards")
+METHOD GET CODE(thePath;theCode)
+ALERT(theCode)
+
+C_TEXT(newCode)
+newCode:="  CREATE EMPTY SET([CardsInDeck];\"ExcessCards\")\r\n ALL RECORDS([CardsInDeck])"
+METHOD SET CODE(thePath;newCode)

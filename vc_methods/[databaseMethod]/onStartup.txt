@@ -1,0 +1,4 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+
+Setup 
+VC_EXPORT_Start 

@@ -1,0 +1,41 @@
+  //%attributes = {"lang":"en"} comment added and reserved by 4D.
+  //Method to look through the cards in the deck
+  //and check if there are more than 4 of the same card
+  //and then eliminate it from the deck
+  //unless it is a Basic Land (CardTypeID = 10).
+  //C_BOOLEAN($sameCardType)
+  //C_BOOLEAN($notBasicLand)
+  //C_BOOLEAN($sameCardName)
+
+CREATE EMPTY SET([CardsInDeck];"ExcessCards")
+ALL RECORDS([CardsInDeck])
+ORDER BY([CardsInDeck];[CardsInDeck]CardName;>)
+$CardName:=[CardsInDeck]CardName
+$CardTypeId:=[CardsInDeck]CardTypeID
+$sameCardCount:=1
+
+NEXT RECORD([CardsInDeck])
+For ($i;2;Records in table([CardsInDeck]))
+	  //$sameCardType:=([CardsInDeck]CardTypeID=$CardTypeId)
+	  //$notBasicLand:=([CardsInDeck]CardTypeID#10)
+	  //$sameCardName:=([CardsInDeck]CardName=$CardName)
+	If (([CardsInDeck]CardTypeID=$CardTypeId) & ([CardsInDeck]CardTypeID#10) & ([CardsInDeck]CardName=$CardName))
+		  //If ($sameCardType & $notBasicLand & $sameCardName)
+		If ($sameCardCount<4)
+			$sameCardCount:=$sameCardCount+1
+		Else 
+			ADD TO SET([CardsInDeck];"ExcessCards")
+		End if 
+	Else 
+		$CardName:=[CardsInDeck]CardName
+		$CardTypeId:=[CardsInDeck]CardTypeID
+		$sameCardCount:=1
+	End if 
+	
+	NEXT RECORD([CardsInDeck])
+End for 
+ALERT("Greetings8")
+  //USE SET("ExcessCards")
+  //DELETE SELECTION([CardsInDeck])
+  //CLEAR SET("ExcessCards")
+  //ALL RECORDS([CardsInDeck])
